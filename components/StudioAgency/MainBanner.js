@@ -18,7 +18,7 @@ class MainBanner extends Component {
           id="mainBanner-section"
         >
           <div className="video-background">
-            <video autoPlay loop src="/video/promo-video.mp4" />
+            <video autoPlay muted loop src="/video/promo-video.mp4" />
           </div>
 
           <div className="d-table">
