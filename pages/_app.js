@@ -9,6 +9,7 @@ import "../public/css/style.css";
 import "../public/css/responsive.css";
 
 import App from "next/app";
+import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 // import Loader from '../components/Shared/Loader';
 import GoTop from "../components/Shared/GoTop";
@@ -44,16 +45,41 @@ export default class MyApp extends App {
 
     return (
       <React.Fragment>
-        <DefaultSeo
-          title="Hadaf | هدف"
-          description="hadaf | هدف. This has been built with React, Next.js, Express.js, and ES6+"
-          openGraph={{
-            type: "website",
-            locale: "ar_su",
-            url: "https://trynext-react.envytheme.com/",
-            site_name: "hadaf | هدف",
-          }}
-        />
+        <Head>
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/icons/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/icons/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/icons/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/icons/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="/icons/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
+          <link rel="shortcut icon" href="/icons/favicon.ico" />
+          <meta name="apple-mobile-web-app-title" content="Hadaf" />
+          <meta name="application-name" content="Hadaf" />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta
+            name="msapplication-config"
+            content="/icons/browserconfig.xml"
+          />
+          <meta name="theme-color" content="#ffffff"></meta>
+          <title>Hadaf</title>
+        </Head>
 
         <Component {...pageProps} />
 
