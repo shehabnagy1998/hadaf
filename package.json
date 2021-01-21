@@ -4,9 +4,9 @@
   "description": "Pungent - React Startups & Digital Agency Templates",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 8000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8000"
   },
   "author": "EnvyTheme.com",
   "license": "ISC",
