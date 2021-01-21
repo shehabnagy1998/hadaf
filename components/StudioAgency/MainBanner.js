@@ -11,6 +11,7 @@ class MainBanner extends Component {
   };
 
   render() {
+    const { carouselData } = this.props;
     return (
       <React.Fragment>
         <div

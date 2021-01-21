@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { API } from "../../helper/CONST";
+import removePublic from "../../helper/removePublic";
+import moment from "moment";
 const OwlCarousel = dynamic(import("react-owl-carousel3"));
 
 const options = {
@@ -40,6 +43,7 @@ class LatestNewsSlider extends Component {
   }
 
   render() {
+    const { newsData } = this.props;
     return (
       <section className="blog-area ptb-100 bg-fcfbfb" id="news-section">
         <div className="container">
@@ -63,140 +67,47 @@ class LatestNewsSlider extends Component {
                 className="blog-slides owl-carousel owl-theme"
                 {...options}
               >
-                <div className="col-lg-12">
-                  <div className="single-blog-item">
-                    <div className="blog-image">
-                      <Link href="/blog-details">
-                        <a>
-                          <img src="/images/blog/blog1.jpg" alt="image" />
-                        </a>
-                      </Link>
+                {newsData.length >= 1 &&
+                  newsData.map((item, i) => (
+                    <div className="col-lg-12">
+                      <div className="single-blog-item">
+                        <div className="blog-image">
+                          {/* <Link href="/blog-details">
+                          <a>
+                          </a>
+                        </Link> */}
+                          {item.image && (
+                            <img
+                              style={{ height: "400px", objectFit: "cover" }}
+                              src={`${API}${removePublic(item.image)}`}
+                              alt="image"
+                            />
+                          )}
 
-                      <div className="post-tag">
-                        <Link href="#">
-                          <a>Technology</a>
-                        </Link>
+                          <div className="post-tag">
+                            <Link href="javascript:void()">
+                              <a>{item.tag}</a>
+                            </Link>
+                          </div>
+                        </div>
+
+                        <div className="blog-post-content">
+                          <span
+                            className="date"
+                            style={{ textTransform: "capitalize" }}
+                          >
+                            {moment(item.date).format("MMMM Do YYYY")}
+                          </span>
+
+                          <h3>
+                            <a>{item.title}</a>
+                          </h3>
+
+                          <p>{item.body}</p>
+                        </div>
                       </div>
                     </div>
-
-                    <div className="blog-post-content">
-                      <span className="date">Feb 15, 2020</span>
-                      <h3>
-                        <Link href="/blog-details">
-                          <a>The Most Popular New top Business Apps</a>
-                        </Link>
-                      </h3>
-
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-12">
-                  <div className="single-blog-item">
-                    <div className="blog-image">
-                      <Link href="/blog-details">
-                        <a>
-                          <img src="/images/blog/blog2.jpg" alt="image" />
-                        </a>
-                      </Link>
-
-                      <div className="post-tag">
-                        <Link href="#">
-                          <a>Agency</a>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="blog-post-content">
-                      <span className="date">Feb 16, 2020</span>
-
-                      <h3>
-                        <Link href="/blog-details">
-                          <a>The Best Marketing top use Management Tools</a>
-                        </Link>
-                      </h3>
-
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-12">
-                  <div className="single-blog-item">
-                    <div className="blog-image">
-                      <Link href="/blog-details">
-                        <a>
-                          <img src="/images/blog/blog3.jpg" alt="image" />
-                        </a>
-                      </Link>
-
-                      <div className="post-tag">
-                        <Link href="#">
-                          <a>IT Agency</a>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="blog-post-content">
-                      <span className="date">Feb 17, 2020</span>
-
-                      <h3>
-                        <Link href="/blog-details">
-                          <a>3 WooCommerce Plugins to Boost Sales</a>
-                        </Link>
-                      </h3>
-
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-12">
-                  <div className="single-blog-item">
-                    <div className="blog-image">
-                      <Link href="/blog-details">
-                        <a>
-                          <img src="/images/blog/blog4.jpg" alt="image" />
-                        </a>
-                      </Link>
-
-                      <div className="post-tag">
-                        <Link href="#">
-                          <a>Development</a>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="blog-post-content">
-                      <span className="date">Feb 18, 2020</span>
-
-                      <h3>
-                        <Link href="/blog-details">
-                          <a>Top 21 Must-Read Blogs For Creative Agencies</a>
-                        </Link>
-                      </h3>
-
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </OwlCarousel>
             ) : (
               ""

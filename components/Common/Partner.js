@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Link from "next/link";
+import { API } from "../../helper/CONST";
+import removePublic from "../../helper/removePublic";
 
 class Partner extends Component {
   render() {
+    const { galleryData } = this.props;
     return (
       <section className="partner-area py-5">
         <div className="container">
@@ -15,86 +18,24 @@ class Partner extends Component {
           </div> */}
 
           <div className="row align-items-center">
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/egypt1.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/sudan1.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/egypt2.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/sudan2.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/egypt3.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/sudan3.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/egypt4.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-4 my-3" style={{ height: "300px" }}>
-              <div className="single-partner w-100 h-100">
-                <img
-                  src="/imgs/sudan4.jpg"
-                  alt="image"
-                  className="h-100 w-100"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
+            {galleryData.length >= 1 &&
+              galleryData.map((item, i) => (
+                <div
+                  className="col-lg-3 col-md-4 my-3"
+                  style={{ height: "300px" }}
+                >
+                  <div className="single-partner w-100 h-100">
+                    {item.image && (
+                      <img
+                        src={`${API}${removePublic(item.image)}`}
+                        alt="image"
+                        className="h-100 w-100"
+                        style={{ objectFit: "cover" }}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </section>

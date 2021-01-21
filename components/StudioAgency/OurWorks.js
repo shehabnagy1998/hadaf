@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { API } from "../../helper/CONST";
+import removePublic from "../../helper/removePublic";
 const OwlCarousel = dynamic(import("react-owl-carousel3"));
 
 const options = {
@@ -47,6 +49,7 @@ class OurWorks extends Component {
   }
 
   render() {
+    const { partnerData } = this.props;
     return (
       <section
         className="case-studies-area ptb-100"
@@ -56,7 +59,7 @@ class OurWorks extends Component {
         <div className="container">
           <div className="section-title mb-1">
             <h2
-              className="text-center mb-1"
+              className="text-center mb-3"
               style={{
                 color: "#0092d5",
               }}
@@ -70,90 +73,26 @@ class OurWorks extends Component {
               className="work-slides owl-carousel owl-theme"
               {...options}
             >
-              <div className="work-card m-0">
-                <img src="/imgs/brand1.png" alt="image" />
-
-                {/* <div className="content text-center">
-                  <span>
-                    <Link href="#">
-                      <a>Development</a>
-                    </Link>
-                  </span>
-
-                  <h3>
-                    <Link href="/portfolio-details">
-                      <a>Designing a better cinema experience</a>
-                    </Link>
-                  </h3>
-
-                  <Link href="/portfolio-details">
-                    <a className="custom-btn">Read More</a>
-                  </Link>
-                </div> */}
-              </div>
-              <div className="work-card m-0">
-                <img src="/imgs/brand2.png" alt="image" />
-
-                {/* <div className="content text-center">
-                  <span>
-                    <Link href="#">
-                      <a>Development</a>
-                    </Link>
-                  </span>
-
-                  <h3>
-                    <Link href="/portfolio-details">
-                      <a>Designing a better cinema experience</a>
-                    </Link>
-                  </h3>
-
-                  <Link href="/portfolio-details">
-                    <a className="custom-btn">Read More</a>
-                  </Link>
-                </div> */}
-              </div>
-              <div className="work-card m-0">
-                <img src="/imgs/brand3.png" alt="image" />
-
-                {/* <div className="content text-center">
-                  <span>
-                    <Link href="#">
-                      <a>Development</a>
-                    </Link>
-                  </span>
-
-                  <h3>
-                    <Link href="/portfolio-details">
-                      <a>Designing a better cinema experience</a>
-                    </Link>
-                  </h3>
-
-                  <Link href="/portfolio-details">
-                    <a className="custom-btn">Read More</a>
-                  </Link>
-                </div> */}
-              </div>
-              <div className="work-card m-0">
-                <img src="/imgs/brand4.png" alt="image" />
-
-                {/* <div className="content text-center">
-                  <span>
-                    <Link href="#">
-                      <a>Development</a>
-                    </Link>
-                  </span>
-
-                  <h3>
-                    <Link href="/portfolio-details">
-                      <a>Designing a better cinema experience</a>
-                    </Link>
-                  </h3>
-
-                  <Link href="/portfolio-details">
-                    <a className="custom-btn">Read More</a>
-                  </Link>
-                </div> */}
-              </div>
+              {partnerData.length >= 1 &&
+                partnerData.map((item, i) => (
+                  <div
+                    key={i}
+                    className="work-card m-0"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: "150px",
+                    }}
+                  >
+                    {item.image && (
+                      <img
+                        style={{ width: "100%", maxHeight: "100%" }}
+                        src={`${API}${removePublic(item.image)}`}
+                        alt="image"
+                      />
+                    )}
+                  </div>
+                ))}
             </OwlCarousel>
           ) : (
             ""
